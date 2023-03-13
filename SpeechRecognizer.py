@@ -15,12 +15,12 @@ class SpeechRecognizer:
     def recognize_from_file(self, filename):
         with sr.AudioFile(filename) as source:
             audio = self.r.record(source)
-            text = self.recognize_audio(audio)
+            text = self.recognize_audio(audio, source)
             return text
 
     def recognize_audio(self, audio, source: str) -> str:
         try:
-            text = self.r.recognize_google(audio)
+            text = self.r.recognize_google(audio, language='pt-BR')
             print("Recognized text:", text)
             return text
         except sr.UnknownValueError:
